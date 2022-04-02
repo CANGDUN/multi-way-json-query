@@ -4,53 +4,15 @@ import jmespath from 'jmespath';
 import * as jp from 'jsonpath';
 
 import JsonMirrorArea from './JsonMirrorArea';
+import { initConfig } from './initConfig';
+
 import './App.css';
 
-const initJson = `{
-  "menu": {
-    "id": "file",
-    "value": "Files",
-    "popup": {
-      "menuitem": [
-        {
-          "value": "New", 
-          "onclick": "CreateNewDoc()"
-        },
-        {
-          "value": "Open", 
-          "onclick": "OpenDoc()"
-        },
-        {
-          "value": "Close", 
-          "onclick": "CloseDoc()"
-        }
-      ]
-    }
-  }
-}`;
-
-const initQuery = 'menu.popup.menuitem';
-
-const initResult = `[
-  {
-    "value": "New",
-    "onclick": "CreateNewDoc()"
-  },
-  {
-    "value": "Open",
-    "onclick": "OpenDoc()"
-  },
-  {
-    "value": "Close",
-    "onclick": "CloseDoc()"
-  }
-]`;
-
 function App() {
-  const [input, setInput] = useState(initJson);
-  const [query, setQuery] = useState(initQuery);
+  const [input, setInput] = useState(initConfig.input);
+  const [query, setQuery] = useState(initConfig.query);
   const [queryMode, setQueryMode] = useState('jmespath');
-  const [result, setResult] = useState(initResult);
+  const [result, setResult] = useState(initConfig.result);
 
   const queryInput = (source, value) => {
     let inputVal, queryVal, modeVal, queryResult = '';
