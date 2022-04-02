@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as jq from 'jq-web';
 import jmespath from 'jmespath';
 import * as jp from 'jsonpath';
 
@@ -76,6 +77,9 @@ function App() {
 
     try {
       switch (modeVal) {
+        case 'jq':
+          queryResult = jq.raw(inputVal, queryVal);
+          break;
         case 'jmespath':
           queryResult = JSON.stringify(jmespath.search(JSON.parse(inputVal), queryVal), null, 2);
           break;
@@ -106,6 +110,7 @@ function App() {
         setQueryMode(event.target.value);
         queryInput('mode', event.target.value);
       }}>
+        <label><input type="radio" checked={queryMode === "jq"} value="jq" />jq</label>
         <label><input type="radio" checked={queryMode === "jmespath"} value="jmespath" />JMESPath</label>
         <label><input type="radio" checked={queryMode === "jsonpath"} value="jsonpath" />JSONPath</label>
       </div>
