@@ -14,6 +14,11 @@ function App() {
   const [queryMode, setQueryMode] = useState('jmespath');
   const [result, setResult] = useState(initConfig.result);
 
+  const handleQueryMode = (event) => {
+    setQueryMode(event.target.value);
+    queryInput('mode', event.target.value);
+  };
+
   const queryInput = (source, value) => {
     let inputVal, queryVal, modeVal, queryResult = '';
 
@@ -68,13 +73,10 @@ function App() {
         }}
       />
       <p>Query</p>
-      <div onChange={(event) => {
-        setQueryMode(event.target.value);
-        queryInput('mode', event.target.value);
-      }}>
-        <label><input type="radio" checked={queryMode === "jq"} value="jq" />jq</label>
-        <label><input type="radio" checked={queryMode === "jmespath"} value="jmespath" />JMESPath</label>
-        <label><input type="radio" checked={queryMode === "jsonpath"} value="jsonpath" />JSONPath</label>
+      <div>
+        <label><input type="radio" onChange={handleQueryMode} checked={queryMode === "jq"} value="jq" />jq</label>
+        <label><input type="radio" onChange={handleQueryMode} checked={queryMode === "jmespath"} value="jmespath" />JMESPath</label>
+        <label><input type="radio" onChange={handleQueryMode} checked={queryMode === "jsonpath"} value="jsonpath" />JSONPath</label>
       </div>
       <JsonMirrorArea
         value={query}
