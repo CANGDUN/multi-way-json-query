@@ -80,8 +80,9 @@ function App() {
             />
           </div>
           <div className="md:col-span-2">
-            <h2 className="text-xl">Query By</h2>
+            <h2 className="text-xl">Query</h2>
             <div className="my-2">
+              <span className="pr-2">By:</span>
               <input className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 mr-1" type="radio" onChange={handleQueryMode} checked={queryMode === "jq"} value="jq" id="query-by-jq" />
               <label className="mr-2" htmlFor="query-by-jq">jq</label>
               <input className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 mr-1" type="radio" onChange={handleQueryMode} checked={queryMode === "jmespath"} value="jmespath" id="query-by-jmespath" />
