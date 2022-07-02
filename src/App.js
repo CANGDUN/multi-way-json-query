@@ -40,7 +40,7 @@ function App() {
     try {
       switch (modeVal) {
         case 'jq':
-          queryResult = jq.raw(inputVal, queryVal);
+          queryResult = JSON.stringify(jq.json(JSON.parse(inputVal), queryVal), null, 2);
           break;
         case 'jmespath':
           queryResult = JSON.stringify(jmespath.search(JSON.parse(inputVal), queryVal), null, 2);
