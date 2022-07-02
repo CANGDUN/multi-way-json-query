@@ -6,6 +6,7 @@ export default function JsonMirrorArea(props) {
     <CodeMirror
       value={props.value}
       editable={props.editable}
+      readOnly={props.readOnly}
       extensions={[json()]}
       onChange={props.onChange}
     />

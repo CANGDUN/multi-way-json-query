@@ -89,6 +89,7 @@ function App() {
       <JsonMirrorArea
         value={result}
         editable={false}
+        readOnly={true}
         onChange={(value, viewUpdate) => {
           setResult(value);
         }}
