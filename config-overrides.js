@@ -1,4 +1,4 @@
-const { override, addWebpackResolve } = require("customize-cra");
+const { override, addWebpackResolve } = require('customize-cra');
 
 module.exports = override(
   addWebpackResolve({
@@ -7,5 +7,5 @@ module.exports = override(
       path: require.resolve('path-browserify'),
       crypto: false
     }
-  }),
+  })
 );

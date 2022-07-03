@@ -1,4 +1,4 @@
-export const initProp = {
+const initProp = {
   input: `{
   "menu": {
     "id": "file",
@@ -36,4 +36,6 @@ export const initProp = {
     "onclick": "CloseDoc()"
   }
 ]`
-}
+};
+
+export default initProp;
