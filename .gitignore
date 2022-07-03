@@ -22,5 +22,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# editor config
-/.vscode
+# logo working directory
+/logo

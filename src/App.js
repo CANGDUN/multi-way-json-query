@@ -5,7 +5,7 @@ import * as jp from 'jsonpath';
 
 import HeadNav from './components/HeadNav';
 import JsonMirrorArea from './components/JsonMirrorArea';
-import initProp from './init/initProp';
+import initProp from './assets/initProp';
 
 import './App.css';
 
@@ -81,7 +81,7 @@ export default function App(props) {
   return (
     <div>
       <HeadNav />
-      <div className="mx-3 md:mx-12 md:mt-2 pt-20 md:pt-0">
+      <div className="mx-3 md:mx-12 mt-2">
         <div className="grid grid-flow-row-dense md:grid-cols-2 gap-4">
           <div>
             <h2 className="text-xl mb-2">Input</h2>
