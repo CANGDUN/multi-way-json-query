@@ -1,4 +1,4 @@
-export const initConfig = {
+export const initProp = {
   input: `{
   "menu": {
     "id": "file",

@@ -5,15 +5,15 @@ import * as jp from 'jsonpath';
 
 import HeadNav from './components/HeadNav';
 import JsonMirrorArea from './components/JsonMirrorArea';
-import { initConfig } from './initConfig';
+import { initProp } from './init/initProp';
 
 import './App.css';
 
-function App() {
-  const [input, setInput] = useState(initConfig.input);
-  const [query, setQuery] = useState(initConfig.query);
+export default function App(props) {
+  const [input, setInput] = useState(initProp.input);
+  const [query, setQuery] = useState(initProp.query);
   const [queryMode, setQueryMode] = useState('jmespath');
-  const [result, setResult] = useState(initConfig.result);
+  const [result, setResult] = useState(initProp.result);
 
   const handleQueryMode = (event) => {
     setQueryMode(event.target.value);
@@ -55,7 +55,7 @@ function App() {
           queryResult = JSON.stringify(jp.query(JSON.parse(inputVal), queryVal), null, 2);
           break;
         default:
-          return;
+          throw new Error('Invalid Query Mode')
       }
     } catch (error) {
       queryResult = error.toString();
@@ -71,6 +71,7 @@ function App() {
           <div>
             <h2 className="text-xl mb-2">Input</h2>
             <JsonMirrorArea
+              id="jsonInput"
               value={input}
               onChange={(value, viewUpdate) => {
                 setInput(value);
@@ -83,14 +84,15 @@ function App() {
             <h2 className="text-xl mb-2">Query</h2>
             <div className="mb-2">
               <span className="pr-2">By:</span>
-              <input className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 mr-1" type="radio" onChange={handleQueryMode} checked={queryMode === "jq"} value="jq" id="query-by-jq" />
-              <label className="mr-2" htmlFor="query-by-jq">jq</label>
-              <input className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 mr-1" type="radio" onChange={handleQueryMode} checked={queryMode === "jmespath"} value="jmespath" id="query-by-jmespath" />
-              <label className="mr-2" htmlFor="query-by-jmespath">JMESPath</label>
-              <input className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 mr-1" type="radio" onChange={handleQueryMode} checked={queryMode === "jsonpath"} value="jsonpath" id="query-by-jsonpath" />
-              <label className="mr-2" htmlFor="query-by-jsonpath">JSONPath</label>
+              <input className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 mr-1" type="radio" onChange={handleQueryMode} checked={queryMode === "jq"} value="jq" id="queryByJq" />
+              <label className="mr-2" htmlFor="queryByJq">jq</label>
+              <input className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 mr-1" type="radio" onChange={handleQueryMode} checked={queryMode === "jmespath"} value="jmespath" id="queryByJmespath" />
+              <label className="mr-2" htmlFor="queryByJmespath">JMESPath</label>
+              <input className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 mr-1" type="radio" onChange={handleQueryMode} checked={queryMode === "jsonpath"} value="jsonpath" id="queryByJsonpath" />
+              <label className="mr-2" htmlFor="queryByJsonpath">JSONPath</label>
             </div>
             <JsonMirrorArea
+              id="queryInput"
               value={query}
               onChange={(value, viewUpdate) => {
                 setQuery(value);
@@ -101,6 +103,7 @@ function App() {
           <div>
             <h2 className="text-xl mb-2">Query Result</h2>
             <JsonMirrorArea
+              id="queryResult"
               value={result}
               editable={false}
               readOnly={true}
@@ -115,5 +118,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
